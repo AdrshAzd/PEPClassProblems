@@ -1,0 +1,71 @@
+// Java program to find
+// if two people starting
+// from different positions
+// ever meet or not.
+//https://www.geeksforgeeks.org/check-if-two-people-starting-from-different-points-ever-meet/
+
+
+
+import java.io.*;
+
+class GFG
+{
+	static void swap(int a, int b)
+	{
+		int t = a;
+		a = b;
+		b = t;
+	}
+	static boolean everMeet(int x1, int x2,
+							int v1, int v2)
+	{
+		// If speed of a person
+		// at a position before
+		// other person is smaller,
+		// then return false.
+		if (x1 < x2 && v1 <= v2)
+		return false;
+		if (x1 > x2 && v1 >= v2)
+		return false;
+		
+		// Making sure that
+		// x1 is greater
+		if (x1 < x2)
+		{
+			swap(x1, x2);
+			swap(v1, v2);
+		}
+	
+		// Until one person
+		// crosses other
+		while (x1 >= x2)
+		{
+			if (x1 == x2)
+				return true;
+			
+			// first person taking one
+			// jump in each iteration
+			x1 = x1 + v1;
+			
+			// second person taking
+			// one jump in each iteration
+			x2 = x2 + v2;
+		}
+	
+		return false;
+	}
+	
+	// Driver code
+	public static void main (String[] args)
+	{
+		int x1 = 5, v1 = 8,
+			x2 = 4, v2 = 7;
+		if (everMeet(x1, x2, v1, v2))
+			System.out.println("Yes");
+		else
+			System.out.println("No");
+	}
+}
+
+// This code is contributed
+// by akt_mit
