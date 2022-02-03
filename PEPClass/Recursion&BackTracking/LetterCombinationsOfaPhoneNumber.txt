@@ -1,0 +1,47 @@
+//https://leetcode.com/problems/letter-combinations-of-a-phone-number/
+
+public List<String> letterCombinations(String digits) {
+        if(digits.isEmpty())
+            return new ArrayList<String>();
+        List<String> list = letterCombination("",digits);
+        return list;
+    }
+    public static List<String> letterCombination(String p,String u){
+        ArrayList<String> list = new ArrayList<String>();
+        if(u.isEmpty()){
+           
+            list.add(p);
+            return list;
+        }
+        
+        String ch = u.substring(0, 1);
+        String poss = possibility(ch);
+        for(int j=0;j<poss.length();j++){
+            String ans = p + String.valueOf(poss.charAt(j));
+            List<String> list1 = letterCombination(ans, u.substring(1));
+            list.addAll(list1);
+        }
+        return list;
+        
+    }
+    public static String possibility(String str){
+        switch(str){
+            case "2":
+                return "abc";
+            case "3":
+                return "def";
+            case "4":
+                return "ghi";
+            case "5":
+                return "jkl";
+            case "6":
+                return "mno";
+            case "7":
+                return "pqrs";
+            case "8":
+                return "tuv";
+            case "9":
+                return "wxyz";
+        }
+        return "";
+    }
